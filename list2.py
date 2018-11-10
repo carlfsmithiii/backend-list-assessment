@@ -16,8 +16,9 @@
 # modify the passed in list.
 # Hint: Don't use `set()`
 def remove_adjacent(nums):
-    """Your code goes here.  Edit this docstring."""
-    return
+    """Returns a list with adjacent repetitions removed"""
+    return [num for index, num in enumerate(nums) 
+            if index == 0 or nums[index-1] != num]
 
 
 # E. Given two lists sorted in increasing order, create and return a merged
@@ -25,8 +26,17 @@ def remove_adjacent(nums):
 # The solution should work in "linear" time, making a single pass of both lists.
 # Hint: Don't use `sort` or `sorted` -- they are not linear time.
 def linear_merge(list1, list2):
-    """Your code goes here.  Edit this docstring."""
-    return
+    """Joins sorted lists into new sorted lists"""
+    list1_index = list2_index = 0
+    while list1_index < len(list1) and list2_index < len(list2):
+        if (list2[list2_index] < list1[list1_index]):
+           list1.insert(list1_index, list2[list2_index])
+           list2_index += 1
+        list1_index += 1
+    while list2_index < len(list2):
+        list1.append(list2[list2_index])
+        list2_index += 1
+    return list1
 
 
 
